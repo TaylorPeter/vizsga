@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Nov 30. 10:21
+-- Létrehozás ideje: 2021. Nov 30. 10:48
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.11
 
@@ -69,6 +69,7 @@ CREATE TABLE `vasarlas` (
 CREATE TABLE `vevo` (
   `vevoid` bigint(20) NOT NULL,
   `nev` varchar(30) COLLATE utf8_hungarian_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `jelszo` varchar(30) COLLATE utf8_hungarian_ci NOT NULL,
   `egyenleg` int(10) NOT NULL,
   `jatekok` int(10) NOT NULL
