@@ -3,7 +3,7 @@ error_reporting(E_ERROR | E_PARSE);
 if(!isset($_POST['gomb'])){
     print("<form action='regisztracio.php' method='post'><br>");
     print("Felhasználónév: <input type='text' name='nev2'><br>");
-    print("E-mail cím: <input type='text' name='email2'><br>");
+    print("E-mail cím: <input type='email' name='email2'><br>");
     print("Jelszó: <input type='password' name='jelszo2'><br>");
     print("Jelszó mégegyszer: <input type='password' name='jelszo3'><br>");
     print("<input type='submit' name='gomb' value='Regisztráció'><br>");
@@ -19,6 +19,9 @@ else{
     $email2 = $_POST['email2'];
     $jelszo2 = $_POST['jelszo2'];
     $jelszo3 = $_POST['jelszo3'];
+
+    
+
     
     
 
@@ -35,7 +38,8 @@ else{
         if($felhasznalo){
             if($felhasznalo['email'] === $email2 )
             {
-                print("Ezzel az email címmel már regisztráltak!");
+                print("<script>alert('Ezzel az email címmel már regisztráltak!'); window.location.href = 'regisztracio.php';</script>");
+                
             }
         
         }
@@ -45,8 +49,11 @@ else{
                 mysqli_query($con,$query) or die ('Hiba az adatbevitelnél!');
                 print("Sikeres regisztráció!");
                 require("kuldo.php");
+                print("<script>window.location.href = 'Bejelentkezes.php';</script>");
         }
     }
+ 
+
 }   
     
     
