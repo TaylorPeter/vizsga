@@ -6,7 +6,7 @@ if(!isset($_POST['gomb'])){
     print("E-mail cím: <input type='text' name='email2'><br>");
     print("Jelszó: <input type='password' name='jelszo2'><br>");
     print("Jelszó mégegyszer: <input type='password' name='jelszo3'><br>");
-    print("<input type='submit' name='gomb'><br>");
+    print("<input type='submit' name='gomb' value='Regisztráció'><br>");
     
     print("</form>");
 
@@ -22,18 +22,35 @@ else{
     
     
 
+    if($nev2 == NULL || $email2 == NULL || $jelszo2 == NULL)
+    {
+        print("Üres mező");
+    }
+    else
+    {
 
-
-    
-
+        $sql = "SELECT * FROM vevo WHERE email='$email2' LIMIT 1";
+        $result = mysqli_query($con, $sql);
+        $felhasznalo = mysqli_fetch_assoc($result);
+        if($felhasznalo){
+            if($felhasznalo['email'] === $email2 )
+            {
+                print("Ezzel az email címmel már regisztráltak!");
+            }
         
+        }
+        else
+        {
+                $query = "INSERT INTO vevo (nev, email, jelszo) VALUES ('$nev2','$email2','$jelszo2')";
+                mysqli_query($con,$query) or die ('Hiba az adatbevitelnél!');
+                print("Sikeres regisztráció!");
+                require("kuldo.php");
+        }
+    }
+}   
     
     
-    $query = "INSERT INTO vevo (nev, email, jelszo) VALUES ('$nev2','$email2','$jelszo2')";
-    mysqli_query($con,$query) or die ('Hiba az adatbevitelnél!');
-    print("Sikeres regisztráció!");
-    require("kuldo.php");
-}
+    
 
 
 ?>
