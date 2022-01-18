@@ -1,9 +1,0 @@
-Adatbázis
-
-termek: termekid, nev, ar
-
-vevo: vevoid, nev, jelszo, email, egyenleg, jatekok
-
-vasarlas: vasarlasid, datum, osszeg
-
-kosar: kosarid, termekid, vevoid, vasarlasid, kosarosszeg, db
