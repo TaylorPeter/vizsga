@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require("kapcs.inc.php");
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -11,13 +11,24 @@ session_start();
     <link rel="stylesheet" href="VizsgaCSS.css">
 </head>
 <body>
-    
+    <?php
+        $egyenleg = "SELECT egyenleg FROM vevo WHERE nev ='".$_SESSION['nev2']."';";
+        
+        $_SESSION['egyenleg'] = $egyenleg;
+        
+        
+    ?>
     <div>   
         <ul>
             <li><a href="">Főoldal</a></li>
             <li><a href="">Legfrissebb</a></li>
             <li><a href="">Felkapott</a></li>
             <li><a href="">Kategória</a></li>
+            <li><a href="Egyenleg.php">Egyenleged: <?php $eredmeny = $con->query($egyenleg);
+                                            while($row = $eredmeny->fetch_assoc())
+                                            {
+                                                echo $row['egyenleg'] , "Ft";
+                                            } ?></a></li>
         <div class="legordulo" style="float:right;">
         <?php
         if(!isset($_SESSION['nev2']))
@@ -35,7 +46,7 @@ session_start();
             print("<button class='legordulogomb'>".$_SESSION['nev2']."</button>");
             print("<div class='legordulo-content'>");
             print("<a href='#'>Profil</a>");
-            print("<a href='#'>Egyenleg</a>");
+            print("<a href='Egyenleg.php'>Egyenleg</a>");
             print("<a href='#'>Játékaid</a>");
             print("<a href='Kijelentkezes.php'>Kijelentkezés</a>");
             print("</div>");
